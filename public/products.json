@@ -1,0 +1,112 @@
+[
+  {
+    "product_id": 1,
+    "product_title": "Wireless Headphones",
+    "product_image": "https://i.postimg.cc/VN5b1GTg/download-9.jpg",
+    "category": "Electronics",
+    "price": 99.99,
+    "description": "High-quality wireless headphones with noise cancellation.",
+    "specification": ["Bluetooth 5.0", "Noise Cancellation", "20-hour battery life"],
+    "availability": true,
+    "rating": 4.5
+  },
+  {
+    "product_id": 2,
+    "product_title": "Smartphone",
+    "product_image": "https://i.postimg.cc/YCdm5KXj/download-10.jpg",
+    "category": "Electronics",
+    "price": 299.99,
+    "description": "Latest smartphone with advanced features and excellent performance.",
+    "specification": ["128GB Storage", "6GB RAM", "Dual Camera"],
+    "availability": true,
+    "rating": 4.7
+  },
+  {
+    "product_id": 3,
+    "product_title": "Laptop",
+    "product_image": "https://i.postimg.cc/44cVm03F/download-11.jpg",
+    "category": "Electronics",
+    "price": 899.99,
+    "description": "Powerful laptop for multitasking and productivity.",
+    "specification": ["Intel i7", "16GB RAM", "512GB SSD"],
+    "availability": true,
+    "rating": 4.6
+  },
+  {
+    "product_id": 4,
+    "product_title": "Smartwatch",
+    "product_image": "https://i.postimg.cc/wBBDMTth/samsung-galaxy-watch-7-ai-smart-watch-40mm-44mm-2.webp",
+    "category": "Electronics",
+    "price": 149.99,
+    "description": "Smartwatch with health tracking and notifications.",
+    "specification": ["Heart Rate Monitor", "GPS", "Water Resistant"],
+    "availability": false,
+    "rating": 4.4
+  },
+  {
+    "product_id": 5,
+    "product_title": "Bluetooth Speaker",
+    "product_image": "https://i.postimg.cc/W1TGR7TY/download-12.jpg",
+    "category": "Electronics",
+    "price": 79.99,
+    "description": "Portable Bluetooth speaker with deep bass.",
+    "specification": ["10-hour battery life", "Water Resistant", "Bluetooth 4.2"],
+    "availability": true,
+    "rating": 4.2
+  },
+  {
+    "product_id": 6,
+    "product_title": "Wireless Mouse",
+    "product_image": "https://i.postimg.cc/hj6LHWtV/download-13.jpg",
+    "category": "Electronics",
+    "price": 54.99,
+    "description": "Ergonomic wireless mouse with adjustable DPI.",
+    "specification": ["2.4 GHz wireless", "Adjustable DPI", "Battery included"],
+    "availability": true,
+    "rating": 4.3
+  },
+  {
+    "product_id": 7,
+    "product_title": "Air Fryer",
+    "product_image": "https://i.postimg.cc/FHyLDkSb/download-14.jpg",
+    "category": "Home Appliances",
+    "price": 129.99,
+    "description": "Healthy cooking air fryer with multiple functions.",
+    "specification": ["3.5L Capacity", "Digital Display", "Non-stick coating"],
+    "availability": true,
+    "rating": 4.5
+  },
+  {
+    "product_id": 8,
+    "product_title": "Vacuum Cleaner",
+    "product_image": "https://i.postimg.cc/VvK7SHf6/download-15.jpg",
+    "category": "Home Appliances",
+    "price": 89.99,
+    "description": "Powerful and lightweight vacuum cleaner.",
+    "specification": ["Cordless", "HEPA Filter", "60-minute runtime"],
+    "availability": false,
+    "rating": 4.1
+  },
+  {
+    "product_id": 9,
+    "product_title": "Mystery Novel",
+    "product_image": "https://i.postimg.cc/xTjh0Lf8/download-16.jpg",
+    "category": "Books",
+    "price": 59.99,
+    "description": "A thrilling mystery novel with twists and turns.",
+    "specification": ["Paperback", "350 pages", "Author: Jane Doe"],
+    "availability": true,
+    "rating": 4.7
+  },
+  {
+    "product_id": 10,
+    "product_title": "Self-Help Book",
+    "product_image": "https://i.postimg.cc/CMs9TcV9/download-17.jpg",
+    "category": "Books",
+    "price": 51.99,
+    "description": "Inspiring self-help book to motivate and guide you.",
+    "specification": ["Hardcover", "200 pages", "Author: John Smith"],
+    "availability": true,
+    "rating": 4.8
+  }
+]
