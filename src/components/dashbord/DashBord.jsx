@@ -3,6 +3,7 @@ import { BsSortNumericDownAlt } from 'react-icons/bs';
 import { useData } from '../../context/useData';
 import { RxCross2 } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 const DashBord = () => {
   const [tab, setTab] = useState('cart');
   const [sortedCartData, setSortedCartData] = useState([]);
@@ -27,6 +28,9 @@ const DashBord = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>GadgetHaven | Dashboard</title>
+      </Helmet>
       <div className='bg-primary'>
         <div className='text-center  pt-8 pb-8'>
           <h1 className='font-bold text-secondary text-[32px] leading-10'>

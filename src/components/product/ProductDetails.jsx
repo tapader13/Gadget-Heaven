@@ -4,6 +4,7 @@ import ReactStars from 'react-rating-stars-component';
 import { CiShoppingCart, CiHeart } from 'react-icons/ci';
 import { useData } from '../../context/useData';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 const ProductDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -44,6 +45,9 @@ const ProductDetails = () => {
   );
   return (
     <div>
+      <Helmet>
+        <title>GadgetHaven | Product Details</title>
+      </Helmet>
       <div className='bg-primary'>
         <div className='text-center  pt-8 pb-[120px]'>
           <h1 className='font-bold text-secondary text-[32px] leading-10'>
