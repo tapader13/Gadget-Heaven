@@ -1,10 +1,30 @@
 import { useState } from 'react';
 import { BsSortNumericDownAlt } from 'react-icons/bs';
 import { useData } from '../../context/useData';
-
+import { RxCross2 } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 const DashBord = () => {
   const [tab, setTab] = useState('cart');
-  const { cartData, wishData } = useData();
+  const [sortedCartData, setSortedCartData] = useState([]);
+  const navigate = useNavigate();
+  const { cartData, wishData, removeCart, removeWish } = useData();
+  const handleSort = () => {
+    const sortedData = [...sortedCartData].sort((a, b) => b.price - a.price);
+    setSortedCartData(sortedData);
+  };
+  useState(() => {
+    setSortedCartData(cartData);
+  }, [cartData]);
+  const handleRemoveCartItem = (item) => {
+    removeCart(item);
+    setSortedCartData(
+      sortedCartData.filter((cartItem) => cartItem.id !== item.id)
+    );
+  };
+
+  const handleRemoveWishItem = (item) => {
+    removeWish(item);
+  };
   return (
     <div>
       <div className='bg-primary'>
@@ -43,80 +63,101 @@ const DashBord = () => {
       </div>
       <div className='flex justify-between items-center w-10/12 mx-auto my-6'>
         <div>
-          <h3 className='text-[24px] font-bold leading-8'>Cart</h3>
+          <h3 className='text-[24px] font-bold leading-8'>
+            {tab === 'cart' ? 'Cart' : 'Wishlist'}
+          </h3>
         </div>
-        <div className='flex justify-between items-center gap-6'>
-          <div>
-            <p className='text-[24px] font-bold leading-8'>
-              Total cost:$999.99
-            </p>
+        {tab === 'cart' && (
+          <div className='flex justify-between items-center gap-6'>
+            <div>
+              <p className='text-[24px] font-bold leading-8'>
+                Total cost:${cartData.reduce((a, b) => a + b.price, 0)}
+              </p>
+            </div>
+            <div>
+              <button className='flex border px-[22px] py-[13px] rounded-full justify-between gap-2 border-primary items-center'>
+                <span onClick={() => handleSort()}>Sort by Price</span>
+                <span>
+                  <BsSortNumericDownAlt />
+                </span>
+              </button>
+            </div>
+            <div>
+              <button
+                onClick={() => navigate('/')}
+                className='bg-primary text-secondary text-[18px] font-medium leading-6 px-[30px] py-[10px] rounded-full'
+              >
+                Purchase
+              </button>
+            </div>
           </div>
-          <div>
-            <button className='flex border px-[22px] py-[13px] rounded-full justify-between gap-2 border-primary items-center'>
-              <span>Sort by Price</span>
-              <span>
-                <BsSortNumericDownAlt />
-              </span>
-            </button>
-          </div>
-          <div>
-            <button className='bg-primary text-secondary text-[18px] font-medium leading-6 px-[30px] py-[10px] rounded-full'>
-              Purchase
-            </button>
-          </div>
-        </div>
+        )}
       </div>
       <div className='w-10/12 mx-auto'>
-        {cartData.map((item, i) => (
-          <div
-            key={i}
-            className='p-8 grid mb-5 grid-cols-12 gap-6 rounded-2xl bg-secondary'
-          >
-            <div className='col-span-3'>
-              <img
-                className='w-full h-[200px]'
-                src={item.product_image}
-                alt=''
-              />
+        {tab === 'cart' &&
+          sortedCartData.map((item, i) => (
+            <div
+              key={i}
+              className='p-8 grid mb-5 grid-cols-12 gap-6 rounded-2xl bg-secondary'
+            >
+              <div className='col-span-3'>
+                <img
+                  className='w-full h-[200px]'
+                  src={item.product_image}
+                  alt=''
+                />
+              </div>
+              <div className='col-span-8'>
+                <h1 className='text-[24px] font-semibold leading-8'>
+                  {item.product_title}
+                </h1>
+                <p className='mt-3 mb-4 text-tertiary/60 text-[18px] font-normal leading-8'>
+                  {item.description}
+                </p>
+                <p className='text-[20px] text-tertiary/80 font-semibold leading-8'>
+                  Price:${item.price}
+                </p>
+              </div>
+              <div
+                onClick={() => handleRemoveCartItem(item)}
+                className='col-span-1 rounded-full border border-red-500 h-fit w-fit p-1 cursor-pointer'
+              >
+                <RxCross2 className='text-2xl text-red-500' />
+              </div>
             </div>
-            <div className='col-span-9'>
-              <h1 className='text-[24px] font-semibold leading-8'>
-                {item.product_title}
-              </h1>
-              <p className='mt-3 mb-4 text-tertiary/60 text-[18px] font-normal leading-8'>
-                {item.description}
-              </p>
-              <p className='text-[20px] text-tertiary/80 font-semibold leading-8'>
-                Price:${item.price}
-              </p>
+          ))}
+        {tab === 'wishlist' &&
+          wishData.map((item, i) => (
+            <div
+              key={i}
+              className='p-8 grid mb-5 grid-cols-12 gap-6 rounded-2xl bg-secondary'
+            >
+              <div className='col-span-3'>
+                <img
+                  className='w-full h-[200px]'
+                  src={item.product_image}
+                  alt=''
+                />
+              </div>
+              <div className='col-span-8'>
+                <h1 className='text-[24px] font-semibold leading-8'>
+                  {item.product_title}
+                </h1>
+                <p className='mt-3 mb-4 text-tertiary/60 text-[18px] font-normal leading-8'>
+                  {item.description}
+                </p>
+                <p className='text-[20px] text-tertiary/80 font-semibold leading-8'>
+                  Price:${item.price}
+                </p>
+              </div>
+              <div
+                onClick={() => handleRemoveWishItem(item)}
+                className='col-span-1 rounded-full border border-red-500 h-fit w-fit p-1 cursor-pointer'
+              >
+                <RxCross2 className='text-2xl text-red-500' />
+              </div>
             </div>
-          </div>
-        ))}
-        {wishData.map((item, i) => (
-          <div
-            key={i}
-            className='p-8 grid mb-5 grid-cols-12 gap-6 rounded-2xl bg-secondary'
-          >
-            <div className='col-span-3'>
-              <img
-                className='w-full h-[200px]'
-                src={item.product_image}
-                alt=''
-              />
-            </div>
-            <div className='col-span-9'>
-              <h1 className='text-[24px] font-semibold leading-8'>
-                {item.product_title}
-              </h1>
-              <p className='mt-3 mb-4 text-tertiary/60 text-[18px] font-normal leading-8'>
-                {item.description}
-              </p>
-              <p className='text-[20px] text-tertiary/80 font-semibold leading-8'>
-                Price:${item.price}
-              </p>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

@@ -7,13 +7,29 @@ export const ConProvider = ({ children }) => {
   const addToCart = (product) => {
     setCartData([...cartData, product]);
   };
-
+  const removeCart = (product) => {
+    setCartData(
+      cartData.filter((item) => item.product_id !== product.product_id)
+    );
+  };
   const addToWish = (product) => {
     setWishData([...wishData, product]);
   };
+  const removeWish = (product) => {
+    setWishData(
+      wishData.filter((item) => item.product_id !== product.product_id)
+    );
+  };
   return (
     <contextProvider.Provider
-      value={{ cartData, addToCart, wishData, addToWish }}
+      value={{
+        cartData,
+        addToCart,
+        wishData,
+        addToWish,
+        removeCart,
+        removeWish,
+      }}
     >
       {children}
     </contextProvider.Provider>
