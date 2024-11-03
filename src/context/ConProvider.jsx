@@ -1,14 +1,21 @@
-import { createContext, useContext } from 'react';
+import { createContext, useState } from 'react';
 
-const contextProvider = createContext(null);
+export const contextProvider = createContext(null);
 export const ConProvider = ({ children }) => {
+  const [cartData, setCartData] = useState([]);
+  const [wishData, setWishData] = useState([]);
+  const addToCart = (product) => {
+    setCartData([...cartData, product]);
+  };
+
+  const addToWish = (product) => {
+    setWishData([...wishData, product]);
+  };
   return (
-    <contextProvider.Provider value={{ value: 'Hello World' }}>
+    <contextProvider.Provider
+      value={{ cartData, addToCart, wishData, addToWish }}
+    >
       {children}
     </contextProvider.Provider>
   );
-};
-
-export const useData = () => {
-  return useContext(contextProvider);
 };

@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component';
 import { CiShoppingCart, CiHeart } from 'react-icons/ci';
-import { useData } from '../../context/ConProvider';
+import { useData } from '../../context/useData';
+import toast from 'react-hot-toast';
 const ProductDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
-  const { value } = useData();
-  console.log(value);
+  const { cartData, addToCart, addToWish, wishData } = useData();
+  console.log(cartData);
   useEffect(() => {
     fetch('/products.json')
       .then((response) => response.json())
@@ -17,6 +18,30 @@ const ProductDetails = () => {
       });
   }, [id]);
   console.log(data);
+  const handleAddToCart = (data) => {
+    const checkData = cartData.find(
+      (item) => item.product_id === data.product_id
+    );
+    if (!checkData) {
+      addToCart(data);
+      toast.success('Product added to cart');
+    }
+    if (checkData) {
+      toast.error('Product already in cart');
+    }
+  };
+  const handleAddWish = (data) => {
+    const checkData = wishData.find(
+      (item) => item.product_id === data.product_id
+    );
+    if (!checkData) {
+      addToWish(data);
+      toast.success('Product added to wishlist');
+    }
+  };
+  const isInWishlist = wishData.some(
+    (item) => item.product_id === data?.product_id
+  );
   return (
     <div>
       <div className='bg-primary'>
@@ -85,15 +110,24 @@ const ProductDetails = () => {
             </div>
           )}
           <div className='flex items-center gap-5'>
-            <button className='flex bg-primary px-5 text-secondary py-3 rounded-3xl items-center gap-2 text-[18px] font-bold leading-6'>
+            <button
+              onClick={() => handleAddToCart(data)}
+              className='flex bg-primary px-5 text-secondary py-3 rounded-3xl items-center gap-2 text-[18px] font-bold leading-6'
+            >
               <span>Add to Cart</span>
               <span>
                 <CiShoppingCart />
               </span>
             </button>
-            <div className='bg-secondary cursor-pointer border p-2 rounded-full'>
+            <button
+              disabled={isInWishlist}
+              onClick={() => handleAddWish(data)}
+              className={`bg-secondary ${
+                isInWishlist ? 'cursor-not-allowed' : 'cursor-pointer'
+              }  border p-2 rounded-full`}
+            >
               <CiHeart />
-            </div>
+            </button>
           </div>
         </div>
       </div>
