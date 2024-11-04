@@ -7,8 +7,10 @@ import { Helmet } from 'react-helmet-async';
 const DashBord = () => {
   const [tab, setTab] = useState('cart');
   const [sortedCartData, setSortedCartData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
-  const { cartData, wishData, removeCart, removeWish } = useData();
+  const { cartData, wishData, removeCart, removeWish, clearCart, clearWish } =
+    useData();
   const handleSort = () => {
     const sortedData = [...sortedCartData].sort((a, b) => b.price - a.price);
     setSortedCartData(sortedData);
@@ -25,6 +27,12 @@ const DashBord = () => {
 
   const handleRemoveWishItem = (item) => {
     removeWish(item);
+  };
+  const handlePurchase = () => {
+    setOpenModal(true);
+    clearCart();
+    clearWish();
+    setSortedCartData([]);
   };
   return (
     <div>
@@ -88,12 +96,33 @@ const DashBord = () => {
             </div>
             <div>
               <button
-                onClick={() => navigate('/')}
+                onClick={() => handlePurchase()}
                 className='bg-primary text-secondary text-[18px] font-medium leading-6 px-[30px] py-[10px] rounded-full'
               >
                 Purchase
               </button>
             </div>
+            <dialog
+              id='my_modal_3'
+              className={`modal ${openModal ? 'modal-open' : ''}`}
+            >
+              <div className='modal-box'>
+                <form method='dialog'>
+                  <button
+                    onClick={() => setOpenModal(false)}
+                    className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'
+                  >
+                    ✕
+                  </button>
+                </form>
+                <h3 className='font-bold text-primary text-2xl text-center '>
+                  Congratulation!
+                </h3>
+                <h6 className='text-center text-xl'>
+                  Your order has been placed successfully
+                </h6>
+              </div>
+            </dialog>
           </div>
         )}
       </div>

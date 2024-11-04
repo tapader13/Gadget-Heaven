@@ -12,6 +12,9 @@ export const ConProvider = ({ children }) => {
       cartData.filter((item) => item.product_id !== product.product_id)
     );
   };
+  const clearCart = () => {
+    setCartData([]);
+  };
   const addToWish = (product) => {
     setWishData([...wishData, product]);
   };
@@ -19,6 +22,9 @@ export const ConProvider = ({ children }) => {
     setWishData(
       wishData.filter((item) => item.product_id !== product.product_id)
     );
+  };
+  const clearWish = () => {
+    setWishData([]);
   };
   return (
     <contextProvider.Provider
@@ -29,6 +35,8 @@ export const ConProvider = ({ children }) => {
         addToWish,
         removeCart,
         removeWish,
+        clearCart,
+        clearWish,
       }}
     >
       {children}
