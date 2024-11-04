@@ -5,6 +5,8 @@ import Home from './components/home/Home';
 import ProductDetails from './components/product/ProductDetails';
 import DashBord from './components/dashbord/DashBord';
 import Error from './components/Error';
+import Orders from './components/orders/Orders';
+import Statistics from './components/Statistics';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <DashBord />,
+      },
+      {
+        path: '/orders',
+        element: <Orders />,
+      },
+      {
+        path: '/statistics',
+        element: <Statistics />,
       },
     ],
   },

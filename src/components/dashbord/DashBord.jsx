@@ -4,13 +4,21 @@ import { useData } from '../../context/useData';
 import { RxCross2 } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 const DashBord = () => {
   const [tab, setTab] = useState('cart');
   const [sortedCartData, setSortedCartData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
-  const { cartData, wishData, removeCart, removeWish, clearCart, clearWish } =
-    useData();
+  const {
+    cartData,
+    wishData,
+    removeCart,
+    removeWish,
+    clearCart,
+    clearWish,
+    handleOrders,
+  } = useData();
   const handleSort = () => {
     const sortedData = [...sortedCartData].sort((a, b) => b.price - a.price);
     setSortedCartData(sortedData);
@@ -21,14 +29,19 @@ const DashBord = () => {
   const handleRemoveCartItem = (item) => {
     removeCart(item);
     setSortedCartData(
-      sortedCartData.filter((cartItem) => cartItem.id !== item.id)
+      sortedCartData.filter(
+        (cartItem) => cartItem.product_id !== item.product_id
+      )
     );
+    toast.success('Product removed from cart');
   };
 
   const handleRemoveWishItem = (item) => {
     removeWish(item);
+    toast.success('Product removed from wishlist');
   };
   const handlePurchase = () => {
+    handleOrders(cartData);
     setOpenModal(true);
     clearCart();
     clearWish();

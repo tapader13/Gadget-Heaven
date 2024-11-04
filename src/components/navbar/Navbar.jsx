@@ -51,6 +51,15 @@ const Navbar = () => {
             >
               <Link to='/dashboard'>Dashboard</Link>
             </li>
+            <li
+              className={`${
+                pathname === '/orders'
+                  ? 'font-bold text-primary'
+                  : 'font-medium'
+              }`}
+            >
+              <Link to='/orders'>Orders</Link>
+            </li>
           </ul>
         </div>
         <div className='flex gap-5 items-center'>
