@@ -129,17 +129,6 @@ const DashBord = () => {
               className={`modal ${openModal ? 'modal-open' : ''}`}
             >
               <div className='modal-box'>
-                <form method='dialog'>
-                  <button
-                    onClick={() => {
-                      setOpenModal(false);
-                      navigate('/');
-                    }}
-                    className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'
-                  >
-                    ✕
-                  </button>
-                </form>
                 <h3 className='font-bold text-primary text-2xl text-center '>
                   Congratulation!
                 </h3>
@@ -147,6 +136,17 @@ const DashBord = () => {
                   Your order has been placed successfully
                 </h6>
                 <h6 className='text-center text-sm'>Total Price:${totPrice}</h6>
+                <form className='text-center mt-3' method='dialog '>
+                  <button
+                    onClick={() => {
+                      setOpenModal(false);
+                      navigate('/');
+                    }}
+                    className='btn btn-active btn-ghost '
+                  >
+                    Close
+                  </button>
+                </form>
               </div>
             </dialog>
           </div>
