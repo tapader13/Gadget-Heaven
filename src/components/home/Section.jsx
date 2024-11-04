@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const Section = () => {
   const [data, setData] = useState([]);
   const [category, setCategory] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState('All Products');
+  const loc = useLocation();
+
+  const [currentCategory, setCurrentCategory] = useState('');
+  useEffect(() => {
+    const pathCategory =
+      loc.pathname === '/'
+        ? 'All Products'
+        : decodeURIComponent(loc.pathname.slice(1)).replace(/-/g, ' ');
+    setCurrentCategory(pathCategory);
+  }, [loc.pathname]);
+  console.log(currentCategory);
   useEffect(() => {
     const getCategory = () => {
       fetch('products.json')
