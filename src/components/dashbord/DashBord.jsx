@@ -97,7 +97,12 @@ const DashBord = () => {
             <div>
               <button
                 onClick={() => handlePurchase()}
-                className='bg-primary text-secondary text-[18px] font-medium leading-6 px-[30px] py-[10px] rounded-full'
+                disabled={cartData.length === 0}
+                className={`bg-primary text-secondary text-[18px] font-medium leading-6 ${
+                  cartData.length === 0
+                    ? 'cursor-not-allowed bg-tertiary/40'
+                    : ''
+                } px-[30px] py-[10px] rounded-full`}
               >
                 Purchase
               </button>
@@ -109,7 +114,10 @@ const DashBord = () => {
               <div className='modal-box'>
                 <form method='dialog'>
                   <button
-                    onClick={() => setOpenModal(false)}
+                    onClick={() => {
+                      setOpenModal(false);
+                      navigate('/');
+                    }}
                     className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'
                   >
                     ✕
