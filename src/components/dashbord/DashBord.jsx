@@ -9,6 +9,7 @@ const DashBord = () => {
   const [tab, setTab] = useState('cart');
   const [sortedCartData, setSortedCartData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [totPrice, setTotPrice] = useState(0);
   const navigate = useNavigate();
   const {
     cartData,
@@ -41,12 +42,15 @@ const DashBord = () => {
     toast.success('Product removed from wishlist');
   };
   const handlePurchase = () => {
+    const total = cartData.reduce((total, item) => total + item.price, 0);
+    setTotPrice(total);
     handleOrders(cartData);
     setOpenModal(true);
     clearCart();
     clearWish();
     setSortedCartData([]);
   };
+
   return (
     <div>
       <Helmet>
@@ -142,6 +146,7 @@ const DashBord = () => {
                 <h6 className='text-center text-xl'>
                   Your order has been placed successfully
                 </h6>
+                <h6 className='text-center text-sm'>Total Price:${totPrice}</h6>
               </div>
             </dialog>
           </div>

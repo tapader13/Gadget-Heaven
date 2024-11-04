@@ -1,16 +1,31 @@
 import { Link, useLocation } from 'react-router-dom';
 import { CiShoppingCart, CiHeart } from 'react-icons/ci';
 import { useData } from '../../context/useData';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
   const { pathname } = useLocation();
   const { cartData, wishData } = useData();
-  console.log(pathname, cartData, wishData);
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    const getCategory = () => {
+      fetch('products.json')
+        .then((response) => response.json())
+        .then((data) => {
+          const categories = data.map((item) => item.category);
+          const uniqueCategories = categories.filter(
+            (cat, index) => categories.indexOf(cat) === index
+          );
+          setCategory(['All Products', ...uniqueCategories]);
+        });
+    };
+    getCategory();
+  }, []);
   return (
     <div
       className={`${
-        pathname === '/' ? 'bg-primary' : ''
-      } w-[96%] mx-auto mt-5 rounded-t-3xl`}
+        pathname === '/' ? 'bg-primary mt-5' : ''
+      } w-[96%] mx-auto  rounded-t-3xl`}
     >
       <div
         className={`flex items-center py-7 justify-between w-10/12 mx-auto ${
@@ -26,7 +41,10 @@ const Navbar = () => {
               className={`${
                 pathname === '/'
                   ? 'font-bold'
-                  : pathname.startsWith('/product')
+                  : pathname.startsWith('/product') ||
+                    category.some((category) =>
+                      pathname.startsWith(`/${category}`)
+                    )
                   ? 'font-bold text-primary'
                   : 'font-medium'
               }`}

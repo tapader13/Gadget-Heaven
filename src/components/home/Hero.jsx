@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Hero = () => {
   return (
     <div className='bg-primary w-[96%] mx-auto rounded-b-3xl text-secondary'>
@@ -9,9 +11,11 @@ const Hero = () => {
           Explore the latest gadgets that will take your experience to the next
           level. From smart devices to the coolest accessories, we have it all!
         </p>
-        <button className='bg-secondary mb-[210px] text-primary text-[20px] font-bold leading-[26px] px-[30px] py-[15px] rounded-full'>
-          Shop Now
-        </button>
+        <Link to='/dashboard'>
+          <button className='bg-secondary mb-[210px] text-primary text-[20px] font-bold leading-[26px] px-[30px] py-[15px] rounded-full'>
+            Shop Now
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ import DashBord from './components/dashbord/DashBord';
 import Error from './components/Error';
 import Orders from './components/orders/Orders';
 import Statistics from './components/Statistics';
+import CategoryPage from './components/category/CategoryPage';
+import AllProduct from './components/category/AllProduct';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,16 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+        children: [
+          {
+            path: '/',
+            element: <AllProduct />,
+          },
+          {
+            path: ':categoryName',
+            element: <CategoryPage />,
+          },
+        ],
       },
 
       {
