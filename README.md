@@ -8,7 +8,7 @@
 
 ## Requirement Document Link
 
-[Insert your requirement document link here]
+[Insert your requirement document link here](https://github.com/programming-hero-web-course2/b10a8-gadget-heaven-tapader13/blob/main/Batch-10_Assignment-08.pdf)
 
 ## React Fundamental Concepts Used
 
