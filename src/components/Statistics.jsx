@@ -13,9 +13,11 @@ const Statistics = () => {
               Statistics Page
             </h1>
             <p className='mt-4 w-8/12 mx-auto text-[16px] font-normal leading-5 text-secondary'>
-              Explore the latest gadgets that will take your experience to the
-              next level. From smart devices to the coolest accessories, we have
-              it all!
+              Gain insights into the trends and performance of the latest
+              gadgets! Here, you&apos;ll find an in-depth analysis of product
+              prices, ratings, and popularity to help you make informed
+              decisions. Compare various devices and discover what makes each
+              one unique in our ever-evolving catalog.
             </p>
           </div>
         </div>

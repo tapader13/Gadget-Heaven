@@ -54,9 +54,11 @@ const ProductDetails = () => {
             Product Details
           </h1>
           <p className='mt-4 w-8/12 mx-auto text-[16px] font-normal leading-5 text-secondary'>
-            Explore the latest gadgets that will take your experience to the
-            next level. From smart devices to the coolest accessories, we have
-            it all!
+            Discover the cutting-edge gadgets designed to enhance your
+            lifestyle. From advanced tech to essential accessories, GadgetHeaven
+            brings you the best in innovation and quality! Explore our
+            collection and find the perfect device to elevate your everyday
+            experience.
           </p>
         </div>
       </div>

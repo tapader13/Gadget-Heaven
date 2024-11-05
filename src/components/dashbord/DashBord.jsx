@@ -62,9 +62,10 @@ const DashBord = () => {
             Dashboard
           </h1>
           <p className='mt-4 w-8/12 mx-auto text-[16px] font-normal leading-5 text-secondary'>
-            Explore the latest gadgets that will take your experience to the
-            next level. From smart devices to the coolest accessories, we have
-            it all!
+            Welcome to your personalized hub for all things tech! Discover the
+            latest gadgets, manage your cart and wishlist, and stay updated on
+            the hottest trends. From smart devices to must-have accessories,
+            your gadget journey starts here!
           </p>
           <div className='flex justify-center mt-8 items-center gap-7'>
             <button
