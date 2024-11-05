@@ -32,7 +32,12 @@ const Navbar = () => {
           pathname === '/' ? 'text-secondary' : 'text-tertiary'
         }`}
       >
-        <div>
+        <div className='flex items-center gap-5 '>
+          <img
+            className='w-12 h-12 rounded-full'
+            src='/DALL·E 2024-11-05 02.06.47 - A small, modern, and minimalistic logo design for GadgetHeaven, an e-commerce platform for gadgets and technology. The logo should feature a compact s.webp'
+            alt=''
+          />
           <h2 className='text-[20px] font-bold leading-6'>Gadget Heaven</h2>
         </div>
         <div>
